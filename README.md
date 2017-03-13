@@ -53,6 +53,30 @@ provided with an image sample at [here](images.md#labels).
 
 
 
+### Performace Metrics
+
+#### Easy/Moderate/Hard difficulty
+
+Excerpt from [the object detection eval page](http://www.cvlibs.net/datasets/kitti/eval_object.php)
+~~~~
+Difficulties are defined as follows:
+- Easy: Min. bounding box height: 40 Px, Max. occlusion level: Fully visible, Max. truncation: 15 %
+- Moderate: Min. bounding box height: 25 Px, Max. occlusion level: Partly occluded, Max. truncation: 30 %
+- Hard: Min. bounding box height: 25 Px, Max. occlusion level: Difficult to see, Max. truncation: 50 %
+All methods are ranked based on the moderately difficult results.
+~~~~
+
+That said, the moderate difficulty is of interest.
+Constraints for a record to be considered moderate difficulty:
+- The *occluded* column is 0 or 1.
+- The *truncated* has a max value of 0.3.
+- The max value of the bounding box height is 25.0 (px).
+  - The bounding box height is the difference between the *top* and *bottom* columns.
+  - Being pixel values, you'd think these should be integers. Don't be fooled by the decimal values.
+
+An example of some data records with these columns can be found in [images.md](images.md#labels).
+
+We can use these constraints to ignore certain data records when measuring the performance of the model.
 
 ### Velodyne Point Clouds
 
