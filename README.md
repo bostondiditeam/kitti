@@ -42,16 +42,15 @@ dimensions (in pixels):
 - 001603.png: 1241 x 376
 - 001822.png: 1238 x 374
 
-
-
-
 #### Labels
 
 Labels for the training set can be found in the
 [zip_files](https://github.com/bostondidi/kitti/tree/master/zip_files) directory.  A sample is
 provided with an image sample at [here](images.md#labels).
 
-
+#### Bounding Boxes
+The bounding boxes are defined by the bbox values from the data.  See the [images.md](images.md#labels) writeup for more detail.
+See [2D_BBox.ipynb](tools/2D_BBox.ipynb) for a demonstration.
 
 ### Performace Metrics
 
