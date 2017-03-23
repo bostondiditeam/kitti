@@ -5,6 +5,8 @@
 #include <string.h>
 #include <cstring>
 #include <unistd.h>
+#include <sstream>
+#include <iomanip>  
 
 #include <pcl/visualization/cloud_viewer.h>
 #include <iostream>
@@ -13,7 +15,7 @@
 
 using namespace std;
 
-int delay = 1000000; // delay between successive LiDAR frames in micro-seconds
+int delay = 100000; // delay between successive LiDAR frames in micro-seconds
 
 void 
 viewerOneOff (pcl::visualization::PCLVisualizer& viewer)
@@ -27,11 +29,11 @@ viewerOneOff (pcl::visualization::PCLVisualizer& viewer)
 
 void colorize_point_cloud(double curr_intensity, pcl::PointXYZRGBA *sample)
 {	
-	// double curr_intensity_II = curr_intensity;
+	// This function adds RGB color to points in the point cloud based on each point's refelctivity.
+	// Blue: Low reflectivity, Yellow/Green: Medium reflectivity, Red: High reflectivity
+	
 	curr_intensity = curr_intensity * 255;
-	// cout << curr_intensity_II << ", " << curr_intensity << endl;
-	// cout << curr_intensity_II << endl;
-
+	
     double intensity_range = 255; //any intensity value above this value will be red
     double wavelength;
     double min_wavelength = 470; // used to discard overtly blue and purple points that are invisible due to the black background
@@ -88,54 +90,13 @@ int main()
 
 	viewer.runOnVisualizationThreadOnce (viewerOneOff);
 
-	// For now, the filenames are input manually
-	int num_files = 40;
-	string file_path[num_files];
-	file_path[0] = "2011_09_26_drive_0001_sync/velodyne_points/data/0000000000.bin";
-	file_path[1] = "2011_09_26_drive_0001_sync/velodyne_points/data/0000000001.bin";
-	file_path[2] = "2011_09_26_drive_0001_sync/velodyne_points/data/0000000002.bin";
-	file_path[3] = "2011_09_26_drive_0001_sync/velodyne_points/data/0000000003.bin";
-	file_path[4] = "2011_09_26_drive_0001_sync/velodyne_points/data/0000000004.bin";
-	file_path[5] = "2011_09_26_drive_0001_sync/velodyne_points/data/0000000005.bin";
-	file_path[6] = "2011_09_26_drive_0001_sync/velodyne_points/data/0000000006.bin";
-	file_path[7] = "2011_09_26_drive_0001_sync/velodyne_points/data/0000000007.bin";
-	file_path[8] = "2011_09_26_drive_0001_sync/velodyne_points/data/0000000008.bin";
-	file_path[9] = "2011_09_26_drive_0001_sync/velodyne_points/data/0000000009.bin";
-	file_path[10] = "2011_09_26_drive_0001_sync/velodyne_points/data/0000000010.bin";
-	file_path[11] = "2011_09_26_drive_0001_sync/velodyne_points/data/0000000011.bin";
-	file_path[12] = "2011_09_26_drive_0001_sync/velodyne_points/data/0000000012.bin";
-	file_path[13] = "2011_09_26_drive_0001_sync/velodyne_points/data/0000000013.bin";
-	file_path[14] = "2011_09_26_drive_0001_sync/velodyne_points/data/0000000014.bin";
-	file_path[15] = "2011_09_26_drive_0001_sync/velodyne_points/data/0000000015.bin";
-	file_path[16] = "2011_09_26_drive_0001_sync/velodyne_points/data/0000000016.bin";
-	file_path[17] = "2011_09_26_drive_0001_sync/velodyne_points/data/0000000017.bin";
-	file_path[18] = "2011_09_26_drive_0001_sync/velodyne_points/data/0000000018.bin";
-	file_path[19] = "2011_09_26_drive_0001_sync/velodyne_points/data/0000000019.bin";
-	file_path[20] = "2011_09_26_drive_0001_sync/velodyne_points/data/0000000020.bin";
-	file_path[21] = "2011_09_26_drive_0001_sync/velodyne_points/data/0000000021.bin";
-	file_path[22] = "2011_09_26_drive_0001_sync/velodyne_points/data/0000000022.bin";
-	file_path[23] = "2011_09_26_drive_0001_sync/velodyne_points/data/0000000023.bin";
-	file_path[24] = "2011_09_26_drive_0001_sync/velodyne_points/data/0000000024.bin";
-	file_path[25] = "2011_09_26_drive_0001_sync/velodyne_points/data/0000000025.bin";
-	file_path[26] = "2011_09_26_drive_0001_sync/velodyne_points/data/0000000026.bin";
-	file_path[27] = "2011_09_26_drive_0001_sync/velodyne_points/data/0000000027.bin";
-	file_path[28] = "2011_09_26_drive_0001_sync/velodyne_points/data/0000000028.bin";
-	file_path[29] = "2011_09_26_drive_0001_sync/velodyne_points/data/0000000029.bin";
-	file_path[30] = "2011_09_26_drive_0001_sync/velodyne_points/data/0000000030.bin";
-	file_path[31] = "2011_09_26_drive_0001_sync/velodyne_points/data/0000000031.bin";
-	file_path[32] = "2011_09_26_drive_0001_sync/velodyne_points/data/0000000032.bin";
-	file_path[33] = "2011_09_26_drive_0001_sync/velodyne_points/data/0000000033.bin";
-	file_path[34] = "2011_09_26_drive_0001_sync/velodyne_points/data/0000000034.bin";
-	file_path[35] = "2011_09_26_drive_0001_sync/velodyne_points/data/0000000035.bin";
-	file_path[36] = "2011_09_26_drive_0001_sync/velodyne_points/data/0000000036.bin";
-	file_path[37] = "2011_09_26_drive_0001_sync/velodyne_points/data/0000000037.bin";
-	file_path[38] = "2011_09_26_drive_0001_sync/velodyne_points/data/0000000038.bin";
-	file_path[39] = "2011_09_26_drive_0001_sync/velodyne_points/data/0000000039.bin";
-
 	// load point cloud
-	int ctr = 0;
 	FILE *stream;
+	int mFrameCounter = 0;
 	
+	string mVeloPath;
+	mVeloPath  = "2011_09_26_drive_0001_sync/velodyne_points/data/";
+
 	while (!viewer.wasStopped ())
 	{	
 		int32_t num = 1000000;
@@ -146,11 +107,18 @@ int main()
 		float *pz = data+2;
 		float *pr = data+3;
 
-		const char* x = file_path[ctr].c_str();
+		ostringstream veloFileName;
+    	veloFileName << setfill('0') << setw(10) << mFrameCounter << ".bin";
+    	mFrameCounter++;
+
+    	string full_velo_path = mVeloPath + veloFileName.str();
+
+		// const char* x = file_path[ctr].c_str();
+		const char* x = full_velo_path.c_str();
 		stream = fopen (x, "rb");
 
 		if(stream == NULL){
-			cout << file_path[ctr] << " not found. Ensure that the file path is correct." << endl;
+			cout << x << " not found. Ensure that the file path is correct." << endl;
 			return 0;
 		}
 
@@ -176,28 +144,9 @@ int main()
 
  		cloud->points.clear();
 
- 		// viewer.showCloud(cloud);
-		//you can also do cool processing here
-		//FIXME: Note that this is running in a separate thread from viewerPsycho
-		//and you should guard against race conditions yourself...
-		ctr++;
-
 		delete data;
-		// delete px;
-		// delete py;
-		// delete pz;
-		// delete pr;
-		// cout << ctr << endl;
-		if(ctr == num_files){
-			cout << "Exiting" << endl;
-			// while(1){
-
-			// }
-			return 0;
-		}
-		
+	
 	}
-
 
 	return 0;  
 }

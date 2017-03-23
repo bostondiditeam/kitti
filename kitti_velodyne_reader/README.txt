@@ -20,6 +20,4 @@ Suggestions:
 
 		Press "R" on the keyboard once the PCL window appears in order to normalize the camera view angle. Otherwise, simply zoom out using the mouse roller.
 
-		Currently, the filepaths to and the filanames of the .bin Velodyne LiDAR files are listed manually in the code. Only 40 files are listed. The code can be modified to change the number of .bin files read or to automate this process instead of doing it manually.
-
 		The delay between successive LiDAR frames is currently set as 1 second (1 million micro-seconds) in a global variable named "delay". This can be altered to slow down or speed up the data playback.
