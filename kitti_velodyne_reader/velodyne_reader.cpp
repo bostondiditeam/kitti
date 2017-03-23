@@ -13,6 +13,8 @@
 
 using namespace std;
 
+int delay = 1000000; // delay between successive LiDAR frames in micro-seconds
+
 void 
 viewerOneOff (pcl::visualization::PCLVisualizer& viewer)
 {
@@ -170,7 +172,7 @@ int main()
 		//blocks until the cloud is actually rendered
  		viewer.showCloud(cloud);
 
- 		usleep(300000);
+ 		usleep(delay);
 
  		cloud->points.clear();
 
