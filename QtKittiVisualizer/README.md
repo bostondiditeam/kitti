@@ -1,26 +1,24 @@
 QtKittiVisualizer
 =================
-Description
------------
 This is a Qt based GUI application to visualize Velodyne LiDAR data from the Kitty data set along with its associated 3D bounding boxes.
 
 Requirements
 -----------
-Qt 4
-PCL 1.7 (sudo apt-get install build-essential cmake libpcl1.7 libpcl-dev pcl-tools)
-CMake 2.8
-Boost 1.54
-Check CMakeLists.txt for further requirements
+-Qt 4
+-PCL 1.7 (sudo apt-get install build-essential cmake libpcl1.7 libpcl-dev pcl-tools)
+-CMake 2.8
+-Boost 1.54
+-Check CMakeLists.txt for further requirements
 
 Compilation Instructions
 -----------
-Run cmake .
-Run make
+-Run cmake .
+-Run make
 
 To Run
 -----------
-Run ./qt-kitti-visualizer
-Modify the file path to .bin Velodyne files in KittiConfig.cpp if the application cannot find the file during run time.
+-Run ./qt-kitti-visualizer
+-Modify the file path to .bin Velodyne files in KittiConfig.cpp if the application cannot find the file during run time.
 
 
 Description
